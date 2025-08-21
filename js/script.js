@@ -249,6 +249,83 @@ function displayBackgroundImage(type, backgroundPath) {
     }
 }
 
+// Displaying Slider Movies
+async function displaySlider(type) {
+    if (type === 'movie') {
+        const {results} = await fetchDataFromAPI('movie/now_playing');
+
+        results.forEach(movie => {
+            const div = document.createElement('div');
+            div.classList.add('swiper-slide');
+
+            div.innerHTML = `
+                <a href="movie-details.html?id=${movie.id}">
+                    <img src="https://images.tmdb.org/t/p/w500${
+                        movie.poster_path
+                    }" alt="${movie.title}">
+                </a>
+                <h4 class="swiper-rating">
+                    <i class="fas fa-star text-secondary"></i>
+                    ${movie.vote_average.toFixed(1)} / 10
+                </h4>
+            `;
+
+            document.querySelector('.swiper-wrapper').appendChild(div);
+        });
+        initSwiper();
+    } else if (type === 'show') {
+        const {results} = await fetchDataFromAPI('tv/on_the_air');
+
+        results.forEach(show => {
+            const div = document.createElement('div');
+            div.classList.add('swiper-slide');
+
+            div.innerHTML = `
+                <a href="tv-details.html?id=${show.id}">
+                    <img src="https://images.tmdb.org/t/p/w500${
+                        show.poster_path
+                    }" alt="${show.name}">
+                </a>
+                <h4 class="swiper-rating">
+                    <i class="fas fa-star text-secondary"></i>
+                    ${show.vote_average.toFixed(1)} / 10
+                </h4>
+            `;
+            document.querySelector('.swiper-wrapper').appendChild(div);
+        });
+        initSwiper();
+    }
+}
+
+// Swiper Init
+function initSwiper() {
+    const swiper = new Swiper('.swiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        freeMode: true,
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            500: {
+                slidesPerView: 2,
+            },
+            700: {
+                slidesPerView: 3,
+            },
+            1200: {
+                slidesPerView: 4,
+            },
+        },
+    });
+}
+
 // Show and hide Spinner
 function showSpinner() {
     document.querySelector('.spinner').classList.add('show');
@@ -302,9 +379,11 @@ function init() {
     switch (global.currentPage) {
         case '/':
         case '/index.html':
+            displaySlider('movie');
             displayPopularMovies();
             break;
         case '/shows.html':
+            displaySlider('show');
             displayPopularShows();
             break;
         case '/movie-details.html':

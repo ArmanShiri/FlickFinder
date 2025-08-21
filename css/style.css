@@ -184,7 +184,8 @@ ul {
 
 /* Section: Now Playing */
 
-section.now-playing {
+section.now-playing,
+section.on-air {
     padding: 60px;
     background: url(../images/showcase-bg.jpg) no-repeat center center/cover;
 }
