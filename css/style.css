@@ -122,11 +122,19 @@ ul {
     grid-gap: 20px;
 }
 
+.grid img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 
 /* Card */
 
 .card {
     background: #04376b;
+    border-radius: 8px;
     padding: 5px;
 }
 
@@ -352,16 +360,15 @@ section h2 {
 /* Alert */
 
 .alert {
-    background: red;
     padding: 10px 20px;
     margin-bottom: 20px;
     border-radius: 5px;
 }
 
-.alert-success {
+.success {
     background: green;
 }
 
-.alert-error {
+.error {
     background: red;
 }
