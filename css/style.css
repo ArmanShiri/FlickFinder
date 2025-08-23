@@ -7,8 +7,8 @@
 }
 
 :root {
-    --color-primary: #020d18;
-    --color-secondary: #f1c40f;
+    --color-primary: #0a2642;
+    --color-secondary: #2cc8e4;
 }
 
 body {
@@ -29,7 +29,7 @@ ul {
 }
 
 .text-primary {
-    color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
 .text-secondary {
@@ -87,7 +87,7 @@ ul {
 
 .main-header {
     padding: 20px 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: #111815;
 }
 
 .main-header .logo {
@@ -133,7 +133,8 @@ ul {
 /* Card */
 
 .card {
-    background: #04376b;
+    background: var(--color-secondary);
+    color: #000;
     border-radius: 8px;
     padding: 5px;
 }
@@ -148,16 +149,17 @@ ul {
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     transition: all 0.5s ease-in-out;
-    background: #0a4b8f;
+    background: #06b5d475;
+    color: #fff;
 }
 
 
 /* Footer */
 
 .main-footer {
-    background: #020d18;
+    background: #111815;
     padding: 20px 0;
     margin-top: 20px;
 }
